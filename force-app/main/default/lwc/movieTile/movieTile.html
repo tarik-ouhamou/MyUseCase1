@@ -1,0 +1,13 @@
+<template>
+    <lightning-card title={movie.Name} class="movie-tile" onclick={previewMovie}>
+        <div class="slds-var-p-horizontal_small slds-card__body slds-card__body_inner">
+            <div class="slds-media">
+                <div class="slds-media__body">
+                    <p class="slds-var-m-bottom_xx-small"><b>Name : </b> {movie.Name}</p>
+                    <p class="slds-var-m-bottom_xx-small"><b>Category : </b> {movie.Category__c}</p>
+                    <p class="slds-var-m-bottom_xx-small"><b>Release date : </b> {movie.Release_date__c}</p>
+                </div>
+            </div>
+        </div>
+    </lightning-card>
+</template>
