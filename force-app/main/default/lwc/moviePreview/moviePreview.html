@@ -1,0 +1,39 @@
+<template>
+
+    <lightning-card title="Movie Details">
+        <template if:true={movie.data}>
+            <lightning-layout>
+                <div class="slds-var-p-horizontal_small slds-card__body slds-card__body_inner">
+                    <lightning-record-edit-form object-api-name={objectApiName} record-id={movieId} onsuccess={editSuccess}>
+                        <lightning-input-field field-name={nameField}></lightning-input-field>
+                        <lightning-input-field field-name={categoryField}></lightning-input-field>
+                        <lightning-input-field field-name={descriptionField}></lightning-input-field>
+                        <lightning-input-field field-name={releaseDateField}></lightning-input-field>
+
+                        <div class="slds-grid_align-center">
+                            <lightning-button
+                                variant="brand"
+                                class="slds-m-top_small slds-m-left_x-small"
+                                type="submit"
+                                label="Update"
+                            >
+                            </lightning-button>
+
+                            <lightning-button
+                                variant="brand"
+                                class="slds-m-top_small slds-m-left_x-small"
+                                label="Delete"
+                            ></lightning-button>
+                        </div>
+                    </lightning-record-edit-form>
+                </div>
+            </lightning-layout>
+        </template> 
+
+        <template if:false={movie.data}>
+            <lightning-layout class="slds-grid_align-center">
+                <p>Click a tile to preview</p>
+            </lightning-layout>
+        </template> 
+    </lightning-card>
+</template>

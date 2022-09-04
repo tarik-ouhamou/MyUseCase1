@@ -1,0 +1,7 @@
+.movie-tile {
+	display: block;
+	border: 1px solid #5a81de;
+	border-radius: .25rem;
+	background-color: #87aafb;
+    margin-top: 30px;
+}
