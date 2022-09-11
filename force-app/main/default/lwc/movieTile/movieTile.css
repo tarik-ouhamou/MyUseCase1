@@ -1,7 +1,19 @@
-.movie-tile {
-	display: block;
-	border: 1px solid #5a81de;
-	border-radius: .25rem;
-	background-color: #87aafb;
-    margin-top: 30px;
+.image-tile {
+	width: 100%;
+	height: 220px;
+	padding: 1px !important;
+	background-position: center;
+	background-size: cover;
+	border-radius: 5px;
+	border-color: black;
+}
+
+.selected {
+	border: 3px solid black;
+	border-radius: 5px;
+}
+
+.pointer {
+	cursor: pointer;
+	padding: 10px;
 }

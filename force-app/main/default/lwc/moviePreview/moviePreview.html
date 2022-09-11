@@ -1,33 +1,21 @@
 <template>
-
     <lightning-card title="Movie Details">
         <template if:true={movie.data}>
-            <lightning-layout>
-                <div class="slds-var-p-horizontal_small slds-card__body slds-card__body_inner">
-                    <lightning-record-edit-form object-api-name={objectApiName} record-id={movieId} onsuccess={editSuccess}>
-                        <lightning-input-field field-name={nameField}></lightning-input-field>
-                        <lightning-input-field field-name={categoryField}></lightning-input-field>
-                        <lightning-input-field field-name={descriptionField}></lightning-input-field>
-                        <lightning-input-field field-name={releaseDateField}></lightning-input-field>
-
-                        <div class="slds-grid_align-center">
-                            <lightning-button
-                                variant="brand"
-                                class="slds-m-top_small slds-m-left_x-small"
-                                type="submit"
-                                label="Update"
-                            >
-                            </lightning-button>
-
-                            <lightning-button
-                                variant="brand"
-                                class="slds-m-top_small slds-m-left_x-small"
-                                label="Delete"
-                            ></lightning-button>
-                        </div>
-                    </lightning-record-edit-form>
-                </div>
-            </lightning-layout>
+            <div class="slds-var-p-horizontal_small slds-card__body slds-card__body_inner">
+                <lightning-record-form 
+                    object-api-name={objectApiName} 
+                    fields={formFields} 
+                    record-id={movieId} 
+                    mode="view" 
+                    onsuccess={successHandler}>
+                </lightning-record-form>
+            </div>
+            <lightning-button
+                slot="actions"
+                class="slds-m-top_small slds-m-left_x-small"
+                label="Delete"
+                onclick={deleteHandler}
+            ></lightning-button>
         </template> 
 
         <template if:false={movie.data}>

@@ -1,16 +1,21 @@
-import { LightningElement, api, wire } from 'lwc';
-import { MessageContext, publish } from 'lightning/messageService';
-import VIEW_MOVIE_MESSAGE from '@salesforce/messageChannel/View_Details__c';
+import { LightningElement, api } from 'lwc';
 
 export default class MovieTile extends LightningElement {
     @api movie;
+    @api selectedMovieId;
 
-    @wire(MessageContext)
-    messageContext;
+    get backgroundStyle() {
+        return "background:url('https://static.vecteezy.com/system/resources/thumbnails/005/919/290/small/video-play-film-player-movie-solid-icon-illustration-logo-template-suitable-for-many-purposes-free-vector.jpg')"
+    }
 
-    previewMovie() {
-        const payload = { Id : this.movie.Id };
-        console.log("payload  : " + payload.Id);
-        publish(this.messageContext, VIEW_MOVIE_MESSAGE, payload);
+    get tileClass() {
+        return this.selectedMovieId === this.movie.Id ? 'pointer selected' : 'pointer';
+    }
+
+    selectMovie() {
+        const event = new CustomEvent('selected', {
+            detail: this.movie.Id
+        });
+        this.dispatchEvent(event);
     }
 }

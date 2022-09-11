@@ -1,21 +1,21 @@
 <template>
     <div class="slds-card__body slds-card__body_inner">
-        <template if:true={movies.data}>
-            <lightning-layout multiple-rows="true" pull-to-boundary="small" class="slds-grid_align-center">
-                <template for:each={movies.data} for:item="movie">
-                    <lightning-layout-item key={movie.Id} size="3" class="slds-var-p-around_x-small">
-                        <c-movie-tile movie={movie}></c-movie-tile>
+        <template if:true={movies}>
+            <lightning-layout multiple-rows="true" pull-to-boundary="small">
+                <template for:each={movies} for:item="movie">
+                    <lightning-layout-item padding="small" key={movie.Id} size="12" class="slds-var-p-around_x-small" small-device-size="6" medium-device-size="4" large-device-size="4">
+                        <c-movie-tile movie={movie} onselected={selectedMovie} selected-movie-id={selectedMovieId}></c-movie-tile>
                     </lightning-layout-item>
                 </template>
             </lightning-layout>
         </template>
     
-        <template if:false={movies.data}>
-            <lightning-formatted-text value="No movies found" class="slds-align_absolute-center slds-m-top_large slds-m-bottom_large"></lightning-formatted-text>
+        <template if:false={movies}>
+            <lightning-formatted-text value="No Movies Found" class="slds-align_absolute-center slds-m-top_large slds-m-bottom_large"></lightning-formatted-text>
         </template>
     
-        <template if:true={movies.error}>
-            <lightning-formatted-text value="Error found" class="slds-align_absolute-center slds-m-top_large slds-m-bottom_large"></lightning-formatted-text>
+        <template if:true={error}>
+            <lightning-formatted-text value="Error Found" class="slds-align_absolute-center slds-m-top_large slds-m-bottom_large"></lightning-formatted-text>
         </template>
     </div>
 </template>

@@ -1,13 +1,18 @@
 <template>
-    <lightning-card title={movie.Name} class="movie-tile" onclick={previewMovie}>
-        <div class="slds-var-p-horizontal_small slds-card__body slds-card__body_inner">
-            <div class="slds-media">
-                <div class="slds-media__body">
-                    <p class="slds-var-m-bottom_xx-small"><b>Name : </b> {movie.Name}</p>
-                    <p class="slds-var-m-bottom_xx-small"><b>Category : </b> {movie.Category__c}</p>
-                    <p class="slds-var-m-bottom_xx-small"><b>Release date : </b> {movie.Release_date__c}</p>
-                </div>
-            </div>
+    <div title={movie.Name} onclick={selectMovie} class={tileClass}>
+        <div style={backgroundStyle} class="image-tile"></div>
+        <div class="lower-third">
+            <h2>{movie.name}</h2>
+            <p>
+                <b>Name : </b> {movie.Name}
+            </p>
+            <p>
+                <b>Category : </b> {movie.Category__c}
+            </p>
+            <p>
+                <b>Release date : </b> 
+                <lightning-formatted-date-time value={movie.Release_date__c}></lightning-formatted-date-time>
+            </p>
         </div>
-    </lightning-card>
+    </div>
 </template>
