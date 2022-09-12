@@ -9,7 +9,15 @@ export default class NewMovieModal extends LightningElement {
     
     @api isOpen;
 
-    closeModal() {
+    successModal() {
+        this.sendEvent();
+    }
+
+    cancelModal() {
+        this.sendEvent();
+    }
+
+    sendEvent() {
         const modalEvent = new CustomEvent('close');
 
         this.dispatchEvent(modalEvent);

@@ -1,10 +1,13 @@
 <template>
-    <lightning-card title="Movies Managements" icon-name="action:search">
-        <lightning-button variant="brand" label="New Movie" title="New Movie" onclick={openModal} class="slds-m-left_x-small"></lightning-button>
+    <lightning-card title="Movies Managements" icon-name="standard:opportunity">
+        <template if:true={isLoading}>
+            <lightning-spinner size="medium" variant="brand"></lightning-spinner>
+        </template>
+        <lightning-button label="New Movie" title="New Movie" onclick={openModal} class="slds-m-left_x-small" slot="actions"></lightning-button>
         <c-new-movie-modal is-open={isOpen} onclose={closeModal}></c-new-movie-modal>
         <lightning-layout class="slds-align_absolute-center">
-            <c-filter-movies onsearch={searchHandler}></c-filter-movies>
+            <c-filter-movies onsearch={searchHandler} onstoploading={stopLoading} onstartloading={startLoading}></c-filter-movies>
         </lightning-layout>
-        <c-movies-list search-value={searchValue}></c-movies-list>
+        <c-movies-list search-value={searchValue} onstoploading={stopLoading}></c-movies-list>
     </lightning-card>
 </template>
