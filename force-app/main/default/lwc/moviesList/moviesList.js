@@ -1,4 +1,4 @@
-import { LightningElement, wire, api } from 'lwc';
+import { LightningElement, wire, api, track } from 'lwc';
 import { refreshApex } from '@salesforce/apex';
 import { MessageContext, publish } from 'lightning/messageService';
 import VIEW_MOVIE_MESSAGE from '@salesforce/messageChannel/View_Details__c';
@@ -7,7 +7,7 @@ import searchMovies from '@salesforce/apex/MoviesController.searchMovies';
 export default class MoviesList extends LightningElement {
     @api searchValue;
     selectedMovieId;
-    movies;
+    @track movies;
     error;
 
     @wire(MessageContext)
@@ -42,5 +42,9 @@ export default class MoviesList extends LightningElement {
 
     @api refresh() {
         refreshApex(this.movieRefresh);
+    }
+
+    get isEmptyMovie() {
+        return this.movies?.length === 0;
     }
 }
