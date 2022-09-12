@@ -1,38 +1,38 @@
-import { LightningElement } from 'lwc';
+import { LightningElement } from "lwc";
 
 export default class FilterMovies extends LightningElement {
+  searchValue = "";
 
-    searchValue = '';
+  searchHandler(event) {
+    this.stopLoading();
+    this.searchValue = event.target.value;
+    this.debouncer();
+  }
 
-    searchHandler(event) {
-        this.stopLoading();
-        this.searchValue = event.target.value;
-        this.debouncer();
-    }
+  debouncer() {
+    window.clearTimeout(this.delayTimeout);
 
-    debouncer() {
-        window.clearTimeout(this.delayTimeout);
-        
-        this.delayTimeout = setTimeout(() => {
-            this.startLoading();
-            this.searchMovies();
-        }, 300);
-    }
+    // eslint-disable-next-line @lwc/lwc/no-async-operation
+    this.delayTimeout = setTimeout(() => {
+      this.startLoading();
+      this.searchMovies();
+    }, 300);
+  }
 
-    stopLoading() {
-        const stopLoadingEvent = new CustomEvent('stoploading');
-        this.dispatchEvent(stopLoadingEvent);
-    }
+  stopLoading() {
+    const stopLoadingEvent = new CustomEvent("stoploading");
+    this.dispatchEvent(stopLoadingEvent);
+  }
 
-    startLoading() {
-        const startLoadingEvent = new CustomEvent('startloading');
-        this.dispatchEvent(startLoadingEvent);
-    }
+  startLoading() {
+    const startLoadingEvent = new CustomEvent("startloading");
+    this.dispatchEvent(startLoadingEvent);
+  }
 
-    searchMovies() {
-        const customEvent = new CustomEvent('search', {
-            detail: this.searchValue
-        });
-        this.dispatchEvent(customEvent);
-    }
+  searchMovies() {
+    const customEvent = new CustomEvent("search", {
+      detail: this.searchValue
+    });
+    this.dispatchEvent(customEvent);
+  }
 }
