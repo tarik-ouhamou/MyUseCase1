@@ -1,0 +1,21 @@
+<template>
+    <div class="slds-card__body slds-card__body_inner">
+        <template if:false={isEmptyMovie}>
+            <lightning-layout multiple-rows="true" pull-to-boundary="small">
+                <template for:each={movies} for:item="movie">
+                    <lightning-layout-item padding="small" key={movie.Id} size="12" class="slds-var-p-around_x-small" small-device-size="6" medium-device-size="4" large-device-size="4">
+                        <c-movie-tile movie={movie} onselected={selectedMovie} selected-movie-id={selectedMovieId}></c-movie-tile>
+                    </lightning-layout-item>
+                </template>
+            </lightning-layout>
+        </template>
+    
+        <template if:true={isEmptyMovie}>
+            <lightning-formatted-text value="No Movies Found" class="slds-align_absolute-center slds-m-top_large slds-m-bottom_large"></lightning-formatted-text>
+        </template>
+    
+        <template if:true={error}>
+            <lightning-formatted-text value="Error Found" class="slds-align_absolute-center slds-m-top_large slds-m-bottom_large"></lightning-formatted-text>
+        </template>
+    </div>
+</template>

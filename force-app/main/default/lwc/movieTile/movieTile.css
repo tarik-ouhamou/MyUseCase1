@@ -1,0 +1,19 @@
+.image-tile {
+	width: 70%;
+	height: 220px;
+	padding: 1px !important;
+	background-position: center;
+	background-size: cover;
+	border-radius: 5px;
+	border-color: black;
+}
+
+.selected {
+	border: 3px solid black;
+	border-radius: 5px;
+}
+
+.pointer {
+	cursor: pointer;
+	padding: 10px;
+}

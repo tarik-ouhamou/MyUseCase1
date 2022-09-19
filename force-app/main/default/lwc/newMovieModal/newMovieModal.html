@@ -1,0 +1,18 @@
+<template>
+    <template if:true={isOpen}>
+        <section role="dialog" tabindex="-1" aria-modal="false" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <div class="slds-modal__header">
+                    <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Create New Movie</h1>
+                </div>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <lightning-record-form 
+                        object-api-name="Movie__c"
+                        fields={fields} 
+                        onsuccess={successModal}
+                        oncancel={cancelModal}></lightning-record-form>
+                </div>
+            </div>
+        </section>
+    </template>
+</template>
