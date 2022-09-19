@@ -16,6 +16,7 @@ public with sharing class MovieActorTriggerHelper {
       [
         SELECT Actor__r.Id, Count(Name)
         FROM MovieActor__c
+        WHERE Id IN :moviesActors
         WITH SECURITY_ENFORCED
         GROUP BY Actor__r.Id
         HAVING Actor__r.Id IN :actorsIds
@@ -35,7 +36,12 @@ public with sharing class MovieActorTriggerHelper {
         Integer.valueOf(actorsMapCount.get(actor.Id).get('expr0')) * k;
     }
 
-    update actors;
+    if (
+      Schema.SObjectType.Actor__c.isUpdateable() &&
+      Schema.SObjectType.Actor__c.fields.Number_of_movies__c.isUpdateable()
+    ) {
+      update actors;
+    }
   }
 
   public static void updateGenderPercentage(List<MovieActor__c> moviesActors) {
@@ -68,7 +74,13 @@ public with sharing class MovieActorTriggerHelper {
       movie.FemaleActorsPercentage__c = ((Decimal) femaleCount / total) * 100;
     }
 
-    update movies;
+    if (
+      Schema.SObjectType.Movie__c.isUpdateable() &&
+      Schema.SObjectType.Movie__c.fields.MaleActorsPercentage__c.isUpdateable() &&
+      Schema.SObjectType.Movie__c.fields.FemaleActorsPercentage__c.isUpdateable()
+    ) {
+      update movies;
+    }
   }
 
   private static Map<Id, AggregateResult> getGenderCountByMovie(String gender) {
